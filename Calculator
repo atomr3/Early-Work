@@ -1,0 +1,393 @@
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.JLabel;
+
+public class Calculator extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+	JButton button, btnNewButton, button_1, button_2, button_3, button_4,
+			button_5, button_6, button_7, button_8, btnClear, btnNewButton_1,
+			button_9, btnX, button_11, button_10;
+	JLabel lblNewLabel;
+	int v1 = 0, v2 = 0, v4 = 0;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Calculator frame = new Calculator();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Calculator() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 250, 415);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		btnNewButton = new JButton("7");
+		btnNewButton.setBounds(10, 130, 52, 37);
+		contentPane.add(btnNewButton);
+		btnNewButton.setActionCommand("7");
+		btnNewButton.addActionListener(this);
+
+		button = new JButton("8");
+		button.setBounds(72, 130, 52, 37);
+		contentPane.add(button);
+		button.setActionCommand("8");
+		button.addActionListener(this);
+
+		button_1 = new JButton("9");
+		button_1.setBounds(134, 130, 52, 37);
+		contentPane.add(button_1);
+		button_1.setActionCommand("9");
+		button_1.addActionListener(this);
+
+		button_2 = new JButton("6");
+		button_2.setBounds(134, 178, 52, 37);
+		contentPane.add(button_2);
+		button_2.setActionCommand("6");
+		button_2.addActionListener(this);
+
+		button_3 = new JButton("5");
+		button_3.setBounds(72, 178, 52, 37);
+		contentPane.add(button_3);
+		button_3.setActionCommand("5");
+		button_3.addActionListener(this);
+
+		button_4 = new JButton("4");
+		button_4.setBounds(10, 178, 52, 37);
+		contentPane.add(button_4);
+		button_4.setActionCommand("4");
+		button_4.addActionListener(this);
+
+		button_5 = new JButton("3");
+		button_5.setBounds(134, 226, 52, 37);
+		contentPane.add(button_5);
+		button_5.setActionCommand("3");
+		button_5.addActionListener(this);
+
+		button_6 = new JButton("2");
+		button_6.setBounds(72, 226, 52, 37);
+		contentPane.add(button_6);
+		button_6.setActionCommand("2");
+		button_6.addActionListener(this);
+
+		button_7 = new JButton("1");
+		button_7.setBounds(10, 226, 52, 37);
+		contentPane.add(button_7);
+		button_7.setActionCommand("1");
+		button_7.addActionListener(this);
+
+		button_8 = new JButton("0");
+		button_8.setBounds(72, 274, 52, 37);
+		contentPane.add(button_8);
+		button_8.setActionCommand("0");
+		button_8.addActionListener(this);
+
+		btnClear = new JButton("Clear ");
+		btnClear.setBounds(53, 343, 89, 23);
+		contentPane.add(btnClear);
+		btnClear.setActionCommand("Clear");
+		btnClear.addActionListener(this);
+
+		btnNewButton_1 = new JButton("+");
+		btnNewButton_1.setBackground(new Color(255, 255, 224));
+		btnNewButton_1.setForeground(Color.DARK_GRAY);
+		btnNewButton_1.setBounds(193, 130, 41, 36);
+		contentPane.add(btnNewButton_1);
+		btnNewButton_1.setActionCommand("+");
+		btnNewButton_1.addActionListener(this);
+
+		button_9 = new JButton("-");
+		button_9.setBackground(new Color(255, 255, 224));
+		button_9.setForeground(Color.DARK_GRAY);
+		button_9.setBounds(193, 179, 41, 36);
+		contentPane.add(button_9);
+		button_9.setActionCommand("-");
+		button_9.addActionListener(this);
+
+		btnX = new JButton("x");
+		btnX.setBackground(new Color(255, 255, 224));
+		btnX.setForeground(Color.DARK_GRAY);
+		btnX.setBounds(193, 226, 41, 36);
+		contentPane.add(btnX);
+		btnX.setActionCommand("x");
+		btnX.addActionListener(this);
+
+		button_11 = new JButton("\u00F7");
+		button_11.setBackground(new Color(255, 255, 224));
+		button_11.setForeground(Color.DARK_GRAY);
+		button_11.setBounds(193, 274, 41, 36);
+		contentPane.add(button_11);
+		button_11.setActionCommand("/");
+		button_11.addActionListener(this);
+
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(10, 21, 214, 37);
+		contentPane.add(lblNewLabel);
+
+		button_10 = new JButton("=");
+		button_10.setForeground(Color.DARK_GRAY);
+		button_10.setBackground(new Color(255, 255, 224));
+		contentPane.add(button_10);
+		button_10.setActionCommand("=");
+		button_10.addActionListener(this);
+		button_10.setBounds(193, 316, 41, 36);
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String eventName = e.getActionCommand();
+		if (!eventName.equals("+") || !eventName.equals("-")
+				|| !eventName.equals("x") || !eventName.equals("/")) {
+			if (eventName.equals("1")) {
+				v1 = (v1 * 10) + 1;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("2")) {
+				v1 = (v1 * 10) + 2;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("3")) {
+				v1 = (v1 * 10) + 3;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("4")) {
+				v1 = (v1 * 10) + 4;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("5")) {
+				v1 = (v1 * 10) + 5;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("6")) {
+				v1 = (v1 * 10) + 6;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("7")) {
+				v1 = (v1 * 10) + 7;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("8")) {
+				v1 = (v1 * 10) + 8;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("9")) {
+				v1 = (v1 * 10) + 9;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("0")) {
+				v1 = (v1 * 10) + 0;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("Clear")) {
+				v1 = 0;
+				lblNewLabel.setText("");
+			}
+
+		}
+		if (eventName.equals("+")) {
+			v2 = v1;
+			v4 = 1;
+			v1 = 0;
+			lblNewLabel.setText("0");
+			if (eventName.equals("1")) {
+				v1 = (v1 * 10) + 1;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("2")) {
+				v1 = (v1 * 10) + 2;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("3")) {
+				v1 = (v1 * 10) + 3;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("4")) {
+				v1 = (v1 * 10) + 4;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("5")) {
+				v1 = (v1 * 10) + 5;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("6")) {
+				v1 = (v1 * 10) + 6;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("7")) {
+				v1 = (v1 * 10) + 7;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("8")) {
+				v1 = (v1 * 10) + 8;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("9")) {
+				v1 = (v1 * 10) + 9;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("0")) {
+				v1 = (v1 * 10) + 0;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("Clear")) {
+				v1 = 0;
+				lblNewLabel.setText("");
+			}
+
+		}// + if statement
+
+		if (eventName.equals("-")) {
+			v2 = v1;
+			v4 = 2;
+			v1 = 0;
+			lblNewLabel.setText("0");
+			if (eventName.equals("1")) {
+				v1 = (v1 * 10) + 1;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("2")) {
+				v1 = (v1 * 10) + 2;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("3")) {
+				v1 = (v1 * 10) + 3;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("4")) {
+				v1 = (v1 * 10) + 4;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("5")) {
+				v1 = (v1 * 10) + 5;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("6")) {
+				v1 = (v1 * 10) + 6;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("7")) {
+				v1 = (v1 * 10) + 7;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("8")) {
+				v1 = (v1 * 10) + 8;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("9")) {
+				v1 = (v1 * 10) + 9;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("0")) {
+				v1 = (v1 * 10) + 0;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("Clear")) {
+				v1 = 0;
+				lblNewLabel.setText("");
+			}
+
+		}// - if statement
+		if (eventName.equals("/")) {
+			v2 = v1;
+			v4 = 3;
+			v1 = 0;
+			lblNewLabel.setText("0");
+			if (eventName.equals("1")) {
+				v1 = (v1 * 10) + 1;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("2")) {
+				v1 = (v1 * 10) + 2;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("3")) {
+				v1 = (v1 * 10) + 3;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("4")) {
+				v1 = (v1 * 10) + 4;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("5")) {
+				v1 = (v1 * 10) + 5;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("6")) {
+				v1 = (v1 * 10) + 6;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("7")) {
+				v1 = (v1 * 10) + 7;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("8")) {
+				v1 = (v1 * 10) + 8;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("9")) {
+				v1 = (v1 * 10) + 9;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("0")) {
+				v1 = (v1 * 10) + 0;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("Clear")) {
+				v1 = 0;
+				lblNewLabel.setText("");
+			}
+		}// ÷ if statement
+
+		if (eventName.equals("x")) {
+
+			v2 = v1;
+			v4 = 4;
+			v1 = 0;
+			lblNewLabel.setText("0");
+			if (eventName.equals("1")) {
+				v1 = (v1 * 10) + 1;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("2")) {
+				v1 = (v1 * 10) + 2;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("3")) {
+				v1 = (v1 * 10) + 3;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("4")) {
+				v1 = (v1 * 10) + 4;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("5")) {
+				v1 = (v1 * 10) + 5;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("6")) {
+				v1 = (v1 * 10) + 6;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("7")) {
+				v1 = (v1 * 10) + 7;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("8")) {
+				v1 = (v1 * 10) + 8;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("9")) {
+				v1 = (v1 * 10) + 9;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("0")) {
+				v1 = (v1 * 10) + 0;
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (eventName.equals("Clear")) {
+				v1 = 0;
+				lblNewLabel.setText("");
+			}
+		}// X if statement
+
+		if (eventName.equals("=")) {
+			if (v4 == 0) {
+				lblNewLabel.setText(Integer.toString(v1));
+			} else if (v4 == 1) {
+				int v3 = v2 + v1;
+				lblNewLabel.setText(Integer.toString(v3));
+			} else if (v4 == 2) {
+				int v3 = v2 - v1;
+				lblNewLabel.setText(Integer.toString(v3));
+			} else if (v4 == 3) {
+				int v3 = v2 / v1;
+				lblNewLabel.setText(Integer.toString(v3));
+			} else if (v4 == 4) {
+				int v3 = v2 * v1;
+				lblNewLabel.setText(Integer.toString(v3));
+			}
+
+			if (eventName.equals("Clear")) {
+				v1 = 0;
+				v2 = 0;
+				lblNewLabel.setText("0");
+			}
+
+		}// = if statement
+
+	}// method
+}// end
